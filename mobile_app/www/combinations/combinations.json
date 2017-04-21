@@ -1,0 +1,38 @@
+[
+    {
+        "id": "23", 
+        "name": "23", 
+        "punchNames": ["straight", "left hook", "straight"],
+        "punchNumbers": [2,3,2],
+        "isExtendedCombo": false
+    }, 
+    {
+        "id": "eggs-and-bacon", 
+        "name": "Eggs & Bacon", 
+        "punchNames": ["jab", "jab", "straight"],
+        "punchNumbers": [1,1,2],
+        "isExtendedCombo": false
+    }, 
+    {
+        "id": "57", 
+        "name": "57", 
+        "punchNames": ["right upper cut", "left upper cut", "right upper cut", "left upper cut", "straight", "left hook", "straight"],
+        "punchNumbers": [4,5,4,5,2,3,2],
+        "isExtendedCombo": false
+    }, 
+    {
+        "id": "tyson", 
+        "name": "tyson", 
+        "punchNames": ["jab", "straight", "left hook", "right upper", "left hook", "straight"],
+        "punchNumbers": [1,2,3,4,3,2],
+        "isExtendedCombo": false 
+    },
+    {
+        "id": "war",
+        "name": "war",
+        "punchNames": "",
+        "startingPunches": [9,3,2,"slip"],
+        "punchNumbers": [2,3,2,"slip",2,3,2,"slip","slip",3,2,3,2,"block 10",4,2,3,2,"catch 3",3,2,"roll"],
+        "isExtendedCombo": true
+    }
+]

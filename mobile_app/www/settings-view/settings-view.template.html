@@ -1,0 +1,54 @@
+<div class="center-block">
+    <p class="header">Boxing Buddy Settings</p>
+    <div class="row">
+        <div class="col-md-2">
+            Round Time (in seconds): 
+        </div>
+        <div class="col-md-3">
+            <input type="number" min="1" ng-model="$ctrl.roundTime" ng-keyup="$ctrl.saveRoundTime()">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            Max Rounds: 
+        </div>
+        <div class="col-md-3">
+            <input type="number" min="1" ng-model="$ctrl.maxRounds" ng-keyup="$ctrl.saveMaxRounds()">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            Round Intermission: 
+        </div>
+        <div class="col-md-3">
+            <input type="number" min="1" ng-model="$ctrl.roundIntermission" ng-keyup="$ctrl.saveRoundIntermission()">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            Time Between Puches: 
+        </div>
+        <div class="col-md-3">
+            <input type="number" min="0.5" ng-model="$ctrl.timeBetweenPunches" ng-keyup="$ctrl.saveTimeBetweenPunches()">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            Time Between Combos: 
+        </div>
+        <div class="col-md-3">
+            <input type="number" min="0.5" ng-model="$ctrl.timeBetweenCombos" ng-keyup="$ctrl.saveTimeBetweenCombos()">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            Display:
+        </div>
+        <div class="col-md-3">
+            <select ng-model="$ctrl.displayType" ng-change="$ctrl.saveDisplayType()">
+            <option value="combo">Combo Name</option>
+            <option value="numbers">Numbers</option>
+            </select>
+        </div>
+    </div>
+</div>

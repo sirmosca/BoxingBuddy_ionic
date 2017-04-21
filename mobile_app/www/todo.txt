@@ -1,0 +1,33 @@
+allow user to create combos
+
+
+use a boxing bell icon to replace the "start boxing" button
+
+implement pausing round/workout
+
+add to github - implement travisci
+allow user to either use the numbers or the combination name (will need a time between combo name for interval when using names)
+    can use the number of punches * time between punches
+
+add ability to let user learn the combos. like have app say name of combo, then step thru punches saying each punch
+
+add major combos like war, basic, espresso, rumble
+    make this a seperate feature. something where they learn the combination. make it a seperate button on main page that navigates to another page. exclude it from the actual boxing. use only regular combos for boxing
+
+allow users to create a workout plan, add stuff like abs, toe/ball things, jump rope, 21 drill, etc.  the stuff we do in class
+
+styling
+
+need tests
+
+add eslint
+
+this stuff for treeshaking
+    rollup.js
+    closure compiler
+
+
+font-family: 'Patua One', cursive;
+font-family: 'Permanent Marker', cursive;
+font-family: 'Rock Salt', cursive;
+font-family: 'Autour One', cursive;

@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <div class="row">
+            <button type="button" class="btn btn-primary center-block" ng-click="$ctrl.startBoxing()" ng-hide="$ctrl.startedBoxing">Start Boxing</button>  
+            <button type="button" class="btn btn-primary center-block" ng-click="$ctrl.stopBoxing()" ng-show="$ctrl.startedBoxing">Stop Boxing</button>  
+        </div>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <img ng-src="./img/fist.svg" alt="boxing glove" 
+            height="200" width="100" 
+            ng-class="{mainBoxingGlove:$ctrl.showPunchImg}" 
+            ng-show="$ctrl.showPunchImg"/>
+        <p class="display text-center">{{$ctrl.display}}</p>
+    </div>
+    <div class="col-md-4"></div>
+</div>
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <p class="display text-center">put timer clock here</p>
+    </div>
+    <div class="col-md-4"></div>
+</div>

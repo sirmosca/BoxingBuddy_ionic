@@ -1,0 +1,36 @@
+body {
+  padding: 20px;
+  background-color: #CCFFFF;
+}
+
+.row {
+  padding: 5px;
+}
+
+.header {
+  font-size: 5em;
+  font-family: 'Permanent Marker', cursive;
+}
+
+.display {
+  font-size: 10em;
+}
+
+.no-margin {
+  margin:0px;
+}
+
+.add-small-margin {
+  margin:5px;
+}
+
+.center {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    text-align: center;
+}
+
+.glossary-card-header {
+    font-weight: bold;
+}
