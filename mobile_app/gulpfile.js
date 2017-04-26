@@ -12,7 +12,13 @@ var paths = {
   sass: ['./scss/**/*.scss']
 };
 
-gulp.task('default', ['build', 'css']);
+gulp.task('default', ['build', 'css', 'dataFiles']);
+
+gulp.task('dataFiles', function() {
+  return gulp.src(['www/app/combinations/combinations.json'])
+    .pipe(concat('combinations.json'))
+    .pipe(gulp.dest('www/dist'));
+});
 
 gulp.task('css', function() {
   return gulp.src(['www/**/*.css'])
