@@ -48,12 +48,6 @@ gulp.task('build', function() {
     .pipe(concat('bundle.js'))
     //.pipe(sourcemaps.write())
     .pipe(gulp.dest('www/dist'));
-
-	// return gulp.src('client/js/draftbuddy-app.js')
-	// 	.pipe(concat('main.js'))
-	// 	.pipe(rename({suffix: '.min'}))
-	// 	.pipe(uglify())
-	// 	.pipe(gulp.dest('build/js'));
 });
 
 gulp.task('sass', function(done) {
