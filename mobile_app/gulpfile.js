@@ -7,6 +7,7 @@ var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
 var iife = require("gulp-iife");
+var karma = require('karma').Server;
 
 var paths = {
   sass: ['./scss/**/*.scss']
@@ -60,6 +61,14 @@ gulp.task('build', function() {
     .pipe(concat('bundle.js'))
     //.pipe(sourcemaps.write())
     .pipe(gulp.dest('www/dist'));
+});
+
+
+gulp.task('test', function(done) {
+	new karma({
+		configFile: __dirname +  '/karma.conf.js',
+		singleRun: true
+	}, done).start();
 });
 
 gulp.task('sass', function(done) {
