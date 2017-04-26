@@ -15,6 +15,11 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+      'www/lib/angular/angular.min.js',
+      'www/lib/angular/angular-animate.min.js',
+      'www/lib/angular/angular-resource.min.js',
+      'www/lib/angular/angular-route.min.js',
+      //'www/lib/angular/angular-sanitize.min.js',
       'www/dist/bundle.js',
       'www/test/*.js'
     ],
