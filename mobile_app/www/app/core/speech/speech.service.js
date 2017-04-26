@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * @type Factory
  * @module speech.factory
@@ -14,12 +12,9 @@ angular
                 text: text,
                 locale: 'en-US',
                 rate: 1.5
-            }, function () {
-                console.log("we talked");
-            }, function (reason) {
-                console.log("shit");
-                console.log(reason);
-            });
+            }, 
+            function () {}, 
+            function (reason) {});
         }
 
         return {

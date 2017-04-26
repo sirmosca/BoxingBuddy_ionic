@@ -1,9 +1,7 @@
-'use strict';
-
 angular
     .module('comboTeachingView')
     .component('comboTeachingView', {
-        templateUrl: 'combo-teaching-view/combo-teaching-view.template.html',
+        templateUrl: 'app/combo-teaching-view/combo-teaching-view.template.html',
         controller: ['Settings', 'Combination', 'Speech', 
             function ComboTeachingViewController(Settings, Combination, Speech) {
                 var self = this;

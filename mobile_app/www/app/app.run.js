@@ -1,5 +1,3 @@
-"use strict";
-
 angular.module("boxingBuddyApp").run(
     function config($ionicPlatform) {
         $ionicPlatform.ready(function() {

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" ng-app="boxingBuddyApp">
+<html lang="en">
 
 <head>
   <meta charset="utf-8">
@@ -7,56 +7,30 @@
   <title>Boxing Buddy</title>
   <link rel="stylesheet" href="lib/bootstrap/bootstrap.min.css" />
   <link rel="stylesheet" href="lib/fonts/googlefonts.css">
-  <link rel="stylesheet" href="app.css" />
-  <link rel="stylesheet" href="app.animations.css" />
+  <link rel="stylesheet" href="app/app.css" />
+  <link rel="stylesheet" href="app/app.animations.css" />
 
-  <script src="cordova.js"></script>
-  <script src="lib/polyfill/SpeechSynthesisUtterance.js"></script>
-  <script src="lib/jquery/jquery.min.js"></script>
-  <script src="lib/bootstrap/bootstrap.min.js"></script>
-  <script src="lib/angular/angular.min.js"></script>
-  <script src="lib/angular/angular-animate.min.js"></script>
-  <script src="lib/angular/angular-resource.min.js"></script>
-  <script src="lib/angular/angular-route.min.js"></script>
-  <script src="lib/angular/angular-sanitize.min.js"></script>
-  <script src="lib/angular/angular-ui-router.min.js"></script>
-  <script src="lib/ionic/ionic.min.js"></script>
-  <script src="lib/ionic/ionic-angular.min.js"></script>
-  <script src="app.module.js"></script>
-  <script src="app.config.js"></script>
-  <script src="app.run.js"></script>
-  <script src="app.animations.js"></script>
-  <script src="core/core.module.js"></script>
-  <!--<script src="core/checkmark/checkmark.filter.js"></script>-->
-  <script src="core/speech/speech.module.js"></script>
-  <script src="core/speech/speech.service.js"></script>
-  <script src="core/settings/settings.module.js"></script>
-  <script src="core/settings/settings.service.js"></script>
-  <script src="core/combination/combination.module.js"></script>
-  <script src="core/combination/combination.service.js"></script>
-  <script src="glossary-view/glossary-view.module.js"></script>
-  <script src="glossary-view/glossary-view.component.js"></script>
-  <script src="boxing-match-view/boxing-match-view.module.js"></script>
-  <script src="boxing-match-view/boxing-match-view.component.js"></script>
-  <script src="main-view/main-view.module.js"></script>
-  <script src="main-view/main-view.component.js"></script>
-  <script src="settings-view/settings-view.module.js"></script>
-  <script src="settings-view/settings-view.component.js"></script>
-  <script src="combo-teaching-view/combo-teaching-view.module.js"></script>
-  <script src="combo-teaching-view/combo-teaching-view.component.js"></script>
 </head>
 
-<body>
+<body ng-app="boxingBuddyApp">
 
   <div>
     <div ng-view></div>
   </div>
 
-  <div class="row center" style="margin-top:300px">Icons made by
+  <!--<div class="row center" style="margin-top:300px">Icons made by
     <a href="http://www.freepik.com" title="Freepik">Freepik</a> from
     <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by
     <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
-  </div>
+  </div>-->
+
+  <script src="cordova.js"></script>
+  <script src="lib/angular/angular.min.js"></script>
+  <script src="lib/angular/angular-animate.min.js"></script>
+  <script src="lib/angular/angular-resource.min.js"></script>
+  <script src="lib/angular/angular-route.min.js"></script>
+  <script src="lib/angular/angular-sanitize.min.js"></script>
+  <script src="dist/bundle.js"></script>
 </body>
 
 </html>

@@ -1,7 +1,5 @@
-"use strict";
-
 angular.module("glossaryView").component("glossaryView", {
-    templateUrl: "glossary-view/glossary-view.template.html",
+    templateUrl: "app/glossary-view/glossary-view.template.html",
     controller: [
         "Settings",
         "Combination",

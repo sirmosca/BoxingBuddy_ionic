@@ -1,5 +1,3 @@
-'use strict'
-
 angular
     .module('core.settings')
     .factory('Settings', ['$resource', '$timeout', '$interval', '$location',

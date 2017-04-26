@@ -6,12 +6,55 @@ var sass = require('gulp-sass');
 var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
+var iife = require("gulp-iife");
 
 var paths = {
   sass: ['./scss/**/*.scss']
 };
 
 gulp.task('default', ['sass']);
+
+gulp.task('build', function() {
+  return gulp.src([
+      'www/lib/polyfill/SpeechSynthesisUtterance.js',
+      'www/lib/jquery/jquery.min.js',
+      'www/lib/bootstrap/bootstrap.min.js',
+      'www/lib/angular/angular-ui-router.min.js',
+      'www/lib/ionic/ionic.min.js',
+      'www/lib/ionic/ionic-angular.min.js',
+      'www/app/app.module.js',
+      'www/app/app.config.js',
+      'www/app/app.run.js',
+      'www/app/app.animations.js',
+      'www/app/core/core.module.js',
+      'www/app/core/speech/speech.module.js',
+      'www/app/core/speech/speech.service.js',
+      'www/app/core/settings/settings.module.js',
+      'www/app/core/settings/settings.service.js',
+      'www/app/core/combination/combination.module.js',
+      'www/app/core/combination/combination.service.js',
+      'www/app/glossary-view/glossary-view.module.js',
+      'www/app/glossary-view/glossary-view.component.js',
+      'www/app/boxing-match-view/boxing-match-view.module.js',
+      'www/app/boxing-match-view/boxing-match-view.component.js',
+      'www/app/main-view/main-view.module.js',
+      'www/app/main-view/main-view.component.js',
+      'www/app/settings-view/settings-view.module.js',
+      'www/app/settings-view/settings-view.component.js',
+      'www/app/combo-teaching-view/combo-teaching-view.module.js',
+      'www/app/combo-teaching-view/combo-teaching-view.component.js'])
+    .pipe(iife({prependSemicolon: false, useStrict: true}))
+    //.pipe(sourcemaps.init())
+    .pipe(concat('bundle.js'))
+    //.pipe(sourcemaps.write())
+    .pipe(gulp.dest('www/dist'));
+
+	// return gulp.src('client/js/draftbuddy-app.js')
+	// 	.pipe(concat('main.js'))
+	// 	.pipe(rename({suffix: '.min'}))
+	// 	.pipe(uglify())
+	// 	.pipe(gulp.dest('build/js'));
+});
 
 gulp.task('sass', function(done) {
   gulp.src('./scss/ionic.app.scss')

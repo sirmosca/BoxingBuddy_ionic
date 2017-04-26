@@ -1,7 +1,5 @@
-"use strict";
-
 angular.module("mainView").component("mainView", {
-    templateUrl: "main-view/main-view.template.html",
+    templateUrl: "app/main-view/main-view.template.html",
     controller: [
         "Settings",
         "Combination",

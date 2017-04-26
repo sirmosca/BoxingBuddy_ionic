@@ -1,5 +1,3 @@
-"use strict";
-
 angular.module("boxingBuddyApp").config([
     "$locationProvider",
     "$routeProvider",

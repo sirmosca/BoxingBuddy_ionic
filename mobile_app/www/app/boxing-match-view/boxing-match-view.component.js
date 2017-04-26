@@ -1,7 +1,5 @@
-"use strict";
-
 angular.module("boxingMatchView").component("boxingMatchView", {
-    templateUrl: "boxing-match-view/boxing-match-view.template.html",
+    templateUrl: "app/boxing-match-view/boxing-match-view.template.html",
     controller: [
         "Settings",
         "Combination",

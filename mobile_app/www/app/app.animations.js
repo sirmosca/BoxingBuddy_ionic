@@ -1,5 +1,3 @@
-'use strict';
-
 angular.
   module('boxingBuddyApp').
   animation('.mainBoxingGlove', function boxingBuddyAnimationFactory() {

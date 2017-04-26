@@ -1,7 +1,7 @@
 angular
     .module('settingsView')
     .component('settingsView', {
-        templateUrl: 'settings-view/settings-view.template.html',
+        templateUrl: 'app/settings-view/settings-view.template.html',
         controller: ['Settings', 
             function SettingsViewController(Settings) {
                 var self = this;

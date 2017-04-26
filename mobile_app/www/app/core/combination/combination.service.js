@@ -1,5 +1,3 @@
-'use strict'
-
 angular
     .module('core.combination')
     .factory('Combination', ['$resource',
