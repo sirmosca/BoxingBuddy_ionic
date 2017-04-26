@@ -1,3 +1,5 @@
+"use strict";
+
 angular.module("boxingMatchView").component("boxingMatchView", {
     templateUrl: "app/boxing-match-view/boxing-match-view.template.html",
     controller: [
@@ -6,11 +8,9 @@ angular.module("boxingMatchView").component("boxingMatchView", {
         "Speech",
         function BoxingMatchViewController(Settings, Combination, Speech) {
             var self = this;
-            var punching;
 
             // move this into an init function then call it
             self.startedBoxing = false;
-            self.pauseBoxing = false;
             self.showPunchImg = false;
             self.combos = [];
             Combination.query().$promise.then(function(resp) {
@@ -31,100 +31,63 @@ angular.module("boxingMatchView").component("boxingMatchView", {
 
             self.startBoxing = function() {
                 self.startedBoxing = true;
-                var roundTime = Settings.getRoundTime();
-                var maxRounds = Settings.getMaxRounds();
-                var roundIntermission = Settings.getRoundIntermission();
-                var timeBetweenPunches = Settings.getTimeBetweenPunches();
-                var timeBetweenCombos = Settings.getTimeBetweenCombos();
+                const roundTime = Settings.getRoundTime();
+                const maxRounds = Settings.getMaxRounds();
+                const roundIntermission = Settings.getRoundIntermission();
+                const timeBetweenPunches = Settings.getTimeBetweenPunches();
+                const timeBetweenCombos = Settings.getTimeBetweenCombos();
 
                 self.startCountdown().then(() => {
                     var round = 1;
 
-                    self.executeRound(
-                        round,
-                        roundTime,
-                        maxRounds,
-                        roundIntermission,
-                        timeBetweenPunches,
-                        timeBetweenCombos
-                    );
+                    self.boxARound(roundTime, timeBetweenPunches, roundIntermission, maxRounds, round);
                 });
             };
 
-            self.executeRound = function(
-                currentRound,
-                roundTime,
-                maxRounds,
-                roundIntermission,
-                timeBetweenPunches,
-                timeBetweenCombos
-            ) {
-                self.pauseBoxing = false;
-                self.doPunches(timeBetweenPunches, timeBetweenCombos);
-                return Settings.sleep(
-                    () => {
-                        self.stopPunching();
-                    },
-                    roundTime
-                )
+            self.boxARound = function(roundTime, timeBetweenPunches, roundIntermission, maxRounds, currentRound) {
+                var totalTime = 0;
+                var combos = [];
+
+                while (totalTime < roundTime) {
+                    var comboIndex = self.getRandomComboIndex();
+                    var combo = self.combos[comboIndex];
+                    var comboName = combo.name;
+                    var comboTime = combo.punchNumbers.length * timeBetweenPunches;
+                    combos.push({name: comboName, time: comboTime});
+                    totalTime += comboTime;
+                }
+
+                self.throwCombos(combos);
+                Settings.sleep(() => {}, roundTime)
                     .then(() => {
                         return self.roundIntermission(roundIntermission);
                     })
                     .then(() => {
-                        if (
-                            currentRound === maxRounds ||
-                            self.startedBoxing === false
-                        ) {
+                        if (currentRound === maxRounds || self.startedBoxing === false) {
                             self.stopPunching();
                             self.changeDisplay("Fight's Over");
                             self.startedBoxing = false;
                         } else {
-                            return self.executeRound(
-                                currentRound + 1,
-                                roundTime,
-                                maxRounds,
-                                roundIntermission,
-                                timeBetweenPunches,
-                                timeBetweenCombos
+                            return self.boxARound(
+                                roundTime, timeBetweenPunches, roundIntermission, maxRounds, currentRound+1
                             );
                         }
                     });
             };
 
-            self.doPunches = function(timeBetweenPunches, timeBetweenCombos) {
-                if (self.pauseBoxing) return;
-                if (self.startedBoxing === false) return;
+            self.throwCombos = function(combos) {
+                if (self.stopPunching === false) return;
+                if (combos == undefined || combos.length == 0) return;
 
-                self
-                    .throwCombo(timeBetweenPunches, timeBetweenCombos)
-                    .then(() => {
-                        Settings.sleep(
-                            () => {
-                                self.doPunches(
-                                    timeBetweenPunches,
-                                    timeBetweenCombos
-                                );
-                            },
-                            timeBetweenCombos
-                        );
-                    });
-            };
-
-            self.throwCombo = function(timeBetweenPunches, timeBetweenCombos) {
-                var punchIndex = 0;
-                var comboIndex = self.getRandomComboIndex();
-                const combo = self.combos[comboIndex].name;
-                const interval = self.combos[comboIndex].punchNumbers.length *
-                    timeBetweenPunches;
-                self.changeDisplay(combo);
-                punching = Settings.sleep(() => {}, interval);
-
-                return punching;
-            };
+                const combo = combos[0];
+                self.changeDisplay(combo.name);
+                return Settings.sleep(() => {
+                    self.throwCombos(combos.slice(1));
+                }, combo.time);
+            }
 
             self.roundIntermission = function(roundIntermission) {
                 self.changeDisplay("intermission");
-                self.pauseBoxing = true;
                 return Settings.sleep(() => {}, roundIntermission);
             };
 
@@ -136,15 +99,13 @@ angular.module("boxingMatchView").component("boxingMatchView", {
 
             self.stopBoxing = function() {
                 self.startedBoxing = false;
-                self.stopPunching();
-                punching = null;
                 self.changeDisplay("Fight Stopped");
             };
 
             self.stopPunching = function() {
                 return new Promise(
                     () => {
-                        self.pauseBoxing = true;
+                        self.stopBoxing();
                     },
                     () => {}
                 );
