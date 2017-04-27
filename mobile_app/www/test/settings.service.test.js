@@ -1,15 +1,27 @@
-describe('My Function', function() {
-	var t;
+describe('Settings service tests', function() {
+	var mockResource;
+    var mockTimeout;
+    var mockInterval;
+    var mockLocation;
+    var mockSettings;
 
-	beforeEach(function() {
-		t = true;
-	});
+    beforeEach(function() {
+        module(function($provide) {
+            //$provide.factory
+        });
+        module('core.settings');
+    });
 
-	afterEach(function() {
-		t = null;
-	});
+	beforeEach(inject(function($resource, $timeout, $interval, $location, Settings) {
+		mockResource = $resource;
+        mockTimeout = $timeout;
+        mockInterval = $interval;
+        mockLocation = $location;
+        mockSettings = Settings;
+	}));
 
-	it('should perform action 1', function() {
-		expect(t).toBeTruthy();
+	it('should set round time', function() {
+		mockSettings.setRoundTime(1000);
+        expect(mockSettings.getRoundTime()).toBe(1000);
 	});
 });

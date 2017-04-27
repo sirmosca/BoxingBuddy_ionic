@@ -19,6 +19,7 @@ module.exports = function(config) {
       'www/lib/angular/angular-animate.min.js',
       'www/lib/angular/angular-resource.min.js',
       'www/lib/angular/angular-route.min.js',
+      'www/lib/angular/angular-mocks.js',
       //'www/lib/angular/angular-sanitize.min.js',
       'www/dist/bundle.js',
       'www/test/*.js'
