@@ -22,6 +22,7 @@ module.exports = function(config) {
       'www/lib/angular/angular-mocks.js',
       //'www/lib/angular/angular-sanitize.min.js',
       'www/dist/bundle.js',
+      //'www/dist/combinations.json',
       'www/test/*.js'
     ],
 
