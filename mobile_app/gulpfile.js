@@ -64,7 +64,7 @@ gulp.task('build', function() {
 });
 
 
-gulp.task('test', function(done) {
+gulp.task('test', ['build'], function(done) {
 	new karma({
 		configFile: __dirname +  '/karma.conf.js',
 		singleRun: true
