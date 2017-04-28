@@ -1,8 +1,8 @@
 describe('Combination service tests', function() {
 
-    var mockCombination, _inject, httpBackend;
+    var sut, _inject, httpBackend;
 
-    mockCombination = null;
+    sut = null;
     httpBackend = null;
 
 
@@ -19,7 +19,7 @@ describe('Combination service tests', function() {
 
     beforeEach(inject(function($httpBackend, Combination) {
         httpBackend = $httpBackend;
-        mockCombination = Combination
+        sut = Combination
     }));
     
     afterEach(function() {
@@ -33,14 +33,14 @@ describe('Combination service tests', function() {
         });
 
         it('exists', function() {
-            expect(!!mockCombination).toBe(true);
+            expect(!!sut).toBe(true);
         });
 
         it('returns a list of combinations', function() {
             var combinations;
             httpBackend.expectGET('dist/combinations.json').respond([{}, {}, {}]);
             
-            combinations = mockCombination.query();
+            combinations = sut.query();
             httpBackend.flush();
             
             expect(combinations.length).toBe(3);
