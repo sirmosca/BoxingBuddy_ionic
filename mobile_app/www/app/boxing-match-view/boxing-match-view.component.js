@@ -9,21 +9,23 @@ angular.module("boxingMatchView").component("boxingMatchView", {
         function BoxingMatchViewController(Settings, Combination, Speech) {
             var self = this;
 
-            // move this into an init function then call it
-            self.startedBoxing = false;
-            self.showPunchImg = false;
-            self.combos = [];
-            Combination.query().$promise.then(function(resp) {
-                angular.forEach(
-                    resp,
-                    function(value, key) {
-                        if (!value.isExtendedCombo) {
-                            this.push(value);
-                        }
-                    },
-                    self.combos
-                );
-            });
+            self.$onInit = function() {
+                self.startedBoxing = false;
+                self.showPunchImg = false;
+                self.combos = [];
+                Combination.query().$promise.then(function(resp) {
+                    angular.forEach(
+                        resp,
+                        function(value, key) {
+                            if (!value.isExtendedCombo) {
+                                this.push(value);
+                            }
+                        },
+                        self.combos
+                    );
+                });
+
+            };
 
             self.$onDestroy = function() {
                 self.stopPunching();
