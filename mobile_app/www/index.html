@@ -30,7 +30,15 @@
   <script src="lib/angular/angular-resource.min.js"></script>
   <script src="lib/angular/angular-route.min.js"></script>
   <script src="lib/angular/angular-sanitize.min.js"></script>
-  <script src="dist/bundle.js"></script>
+  <script src='node_modules/systemjs/dist/system.src.js'></script>
+  <!--<script src="dist/bundle.js"></script>-->
+
+  <script>
+    System.config({
+      packages: {'app': {defaultExtension: 'js'}}
+    });
+    System.import('app/app.module');
+  </script>
 </body>
 
 </html>
