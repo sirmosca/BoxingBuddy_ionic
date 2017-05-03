@@ -1,23 +1,16 @@
-/**
- * @type Factory
- * @module speech.factory
- * @class speech
- */
-angular
-    .module('core.speech')
-    .factory('Speech', function () {
-        function sayIt(text, config) {
-            
-            TTS.speak({
-                text: text,
-                locale: 'en-US',
-                rate: 1.5
-            }, 
-            function () {}, 
-            function (reason) {});
-        }
+function Speech() {
+    function sayIt(text, config) {
+        
+        TTS.speak({
+            text: text,
+            locale: 'en-US',
+            rate: 1.5
+        }, 
+        function () {}, 
+        function (reason) {});
+    }
 
-        return {
-            sayText: sayIt
-        };
-    });
+    return {
+        sayText: sayIt
+    };
+}

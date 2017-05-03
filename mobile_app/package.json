@@ -3,6 +3,7 @@
   "version": "1.1.1",
   "description": "mobile_app: An Ionic project",
   "dependencies": {
+    "@types/angular": "^1.6.16",
     "systemjs": "^0.20.12"
   },
   "devDependencies": {
@@ -36,7 +37,8 @@
     "test": "karma start karma.conf.js",
     "android": "ionic run android",
     "android build": "cordova build --release android",
-    "tsc": "tsc -p ./www -w"
+    "tsc": "tsc -p ./www -w",
+    "ionic serve": "ionic serve"
   },
   "cordovaPlatforms": []
 }

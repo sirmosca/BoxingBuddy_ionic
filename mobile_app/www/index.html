@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; font-src * ">
+  <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; font-src * ">-->
   <title>Boxing Buddy</title>
   <!--<link rel="stylesheet" href="lib/bootstrap/bootstrap.min.css" />
   <link rel="stylesheet" href="lib/fonts/googlefonts.css">
@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="dist/app.css" />
 </head>
 
-<body ng-app="boxingBuddyApp" class="body">
+<body  class="body">
 
   <div>
     <div ng-view></div>
@@ -25,20 +25,27 @@
   </div>-->
 
   <script src="cordova.js"></script>
+  <!--<script src="lib/polyfill/SpeechSynthesisUtterance.js"></script>-->
+  <script src="lib/jquery/jquery.min.js"></script>
+  <script src="lib/bootstrap/bootstrap.min.js"></script>
   <script src="lib/angular/angular.min.js"></script>
   <script src="lib/angular/angular-animate.min.js"></script>
   <script src="lib/angular/angular-resource.min.js"></script>
   <script src="lib/angular/angular-route.min.js"></script>
   <script src="lib/angular/angular-sanitize.min.js"></script>
-  <script src='node_modules/systemjs/dist/system.src.js'></script>
-  <!--<script src="dist/bundle.js"></script>-->
-
+  <script src="lib/angular/angular-ui-router.min.js"></script>
+  <script src="lib/ionic/ionic.min.js"></script>
+  <script src="lib/ionic/ionic-angular.min.js"></script>
+  <script src='lib/systemjs/systemjs.min.js'></script>
   <script>
-    System.config({
+    SystemJS.config({
       packages: {'app': {defaultExtension: 'js'}}
     });
-    System.import('app/app.module');
+    SystemJS.import('app/app.module');
   </script>
+<!--
+    <script src="app/main-view/main-view.module.js"></script>
+  <script src="app/main-view/main-view.component.js"></script>-->
 </body>
 
 </html>
