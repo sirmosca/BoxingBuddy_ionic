@@ -1,1 +1,0 @@
-angular.module('comboTeachingView', ['core.settings']);

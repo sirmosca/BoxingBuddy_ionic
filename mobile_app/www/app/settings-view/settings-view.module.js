@@ -1,1 +1,0 @@
-angular.module('settingsView', ['core.settings']);
