@@ -57,13 +57,13 @@ System.register(["./core/combination/combination.service", "./core/settings/sett
                 .animation('.mainBoxingGlove', app_animations_1.default);
             angular.module('core.settings', ['ngResource']);
             angular.module('core.settings')
-                .service('Settings', ['$resource', '$timeout', '$interval', '$location', settings_service_1.default]);
+                .factory('Settings', ['$resource', '$timeout', '$interval', '$location', settings_service_1.default]);
             angular.module('core.combination', ['ngResource']);
             angular.module('core.combination')
-                .service('Combination', ['$resource', combination_service_1.default]);
+                .factory('Combination', ['$resource', combination_service_1.default]);
             angular.module('core.speech', []);
             angular.module('core.speech')
-                .service('Speech', [speech_service_1.default]);
+                .factory('Speech', [speech_service_1.default]);
             angular.module('core', ['core.settings', 'core.combination', 'core.speech']);
             angular.module('mainView', ['core']);
             angular.module('mainView').component('mainView', {

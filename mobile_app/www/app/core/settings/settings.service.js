@@ -1,5 +1,5 @@
 function Settings ($resource, $timeout, $interval, $location) {
-    var service = this;
+    var service = {};
     service.roundTime = 180000;
     service.maxRounds = 2;
     service.timeBetweenPunches = 750;

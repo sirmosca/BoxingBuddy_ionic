@@ -29,15 +29,15 @@ angular
 
 angular.module('core.settings', ['ngResource']);
 angular.module('core.settings')
-   .service('Settings', ['$resource', '$timeout', '$interval', '$location', Settings]);
+   .factory('Settings', ['$resource', '$timeout', '$interval', '$location', Settings]);
 
 angular.module('core.combination', ['ngResource']);
 angular.module('core.combination')
-    .service('Combination', ['$resource', Combination]);
+    .factory('Combination', ['$resource', Combination]);
 
 angular.module('core.speech', []);
 angular.module('core.speech')
-    .service('Speech', [Speech]);
+    .factory('Speech', [Speech]);
 
 angular.module('core', ['core.settings', 'core.combination', 'core.speech']);
 
