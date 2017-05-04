@@ -1,5 +1,5 @@
 import Combination from './core/combination/combination.service';
-import Settings from './core/settings/settings.service';
+import {Settings} from './core/settings/settings.service';
 import Speech from './core/speech/speech.service'; 
 import MainViewController from './main-view/main-view.component';
 import GlossaryViewController from './glossary-view/glossary-view.component';

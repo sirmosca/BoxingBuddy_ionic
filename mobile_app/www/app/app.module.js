@@ -57,7 +57,7 @@ System.register(["./core/combination/combination.service", "./core/settings/sett
                 .animation('.mainBoxingGlove', app_animations_1.default);
             angular.module('core.settings', ['ngResource']);
             angular.module('core.settings')
-                .factory('Settings', ['$resource', '$timeout', '$interval', '$location', settings_service_1.default]);
+                .factory('Settings', ['$resource', '$timeout', '$interval', '$location', settings_service_1.Settings]);
             angular.module('core.combination', ['ngResource']);
             angular.module('core.combination')
                 .factory('Combination', ['$resource', combination_service_1.default]);
