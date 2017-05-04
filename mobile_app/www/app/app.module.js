@@ -1,71 +1,7 @@
-System.register(["./core/combination/combination.service", "./core/settings/settings.service", "./core/speech/speech.service", "./main-view/main-view.component", "./glossary-view/glossary-view.component", "./boxing-match-view/boxing-match-view.component", "./settings-view/settings-view.component", "./combo-teaching-view/combo-teaching-view.component"], function (exports_1, context_1) {
+System.register(["./core/combination/combination.service", "./core/settings/settings.service", "./core/speech/speech.service", "./main-view/main-view.component", "./glossary-view/glossary-view.component", "./boxing-match-view/boxing-match-view.component", "./settings-view/settings-view.component", "./combo-teaching-view/combo-teaching-view.component", "./app.config", "./app.run", "./app.animations"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    function runConfig($ionicPlatform) {
-        $ionicPlatform.ready(function () {
-            if (window.StatusBar) {
-                StatusBar.styleDefault();
-            }
-        });
-    }
-    function configure($routeProvider, $locationProvider) {
-        $locationProvider.hashPrefix("!");
-        $locationProvider.html5Mode(false);
-        $routeProvider
-            .when("/", {
-            template: "<main-view></main-view>",
-        })
-            .when("/settings", {
-            template: "<settings-view></settings-view>",
-        })
-            .when("/enterRing", {
-            template: "<boxing-match-view></boxing-match-view>",
-        })
-            .when("/combos", {
-            template: "<combo-teaching-view></combo-teaching-view>",
-        })
-            .when("/glossary", {
-            template: "<glossary-view></glossary-view>",
-        })
-            .otherwise("/");
-    }
-    function boxingBuddyAnimationFactory() {
-        return {
-            addClass: animateIn,
-            removeClass: animateOut
-        };
-        function animateIn(element, className, done) {
-            element.css({
-                display: 'block',
-                position: 'absolute',
-                top: 0,
-                left: 200,
-                height: 200,
-                width: 100
-            }).animate({
-                height: 400,
-                width: 200,
-                top: -100,
-                left: 160
-            }, 500, done);
-            return function animateInEnd(wasCanceled) {
-                if (wasCanceled)
-                    element.stop();
-            };
-        }
-        ;
-        function animateOut(element, className, done) {
-            element.css({
-                display: 'none'
-            }).animate({}, done);
-            return function animateOutEnd(wasCanceled) {
-                if (wasCanceled)
-                    element.stop();
-            };
-        }
-        ;
-    }
-    var combination_service_1, settings_service_1, speech_service_1, main_view_component_1, glossary_view_component_1, boxing_match_view_component_1, settings_view_component_1, combo_teaching_view_component_1;
+    var combination_service_1, settings_service_1, speech_service_1, main_view_component_1, glossary_view_component_1, boxing_match_view_component_1, settings_view_component_1, combo_teaching_view_component_1, app_config_1, app_run_1, app_animations_1;
     return {
         setters: [
             function (combination_service_1_1) {
@@ -91,6 +27,15 @@ System.register(["./core/combination/combination.service", "./core/settings/sett
             },
             function (combo_teaching_view_component_1_1) {
                 combo_teaching_view_component_1 = combo_teaching_view_component_1_1;
+            },
+            function (app_config_1_1) {
+                app_config_1 = app_config_1_1;
+            },
+            function (app_run_1_1) {
+                app_run_1 = app_run_1_1;
+            },
+            function (app_animations_1_1) {
+                app_animations_1 = app_animations_1_1;
             }
         ],
         execute: function () {
@@ -104,11 +49,12 @@ System.register(["./core/combination/combination.service", "./core/settings/sett
                 "mainView",
                 "glossaryView",
                 "boxingMatchView",
-                "settingsView"
+                "settingsView",
+                "comboTeachingView"
             ])
-                .config(configure)
-                .run(runConfig)
-                .animation('.mainBoxingGlove', boxingBuddyAnimationFactory);
+                .config(['$routeProvider', '$locationProvider', app_config_1.default])
+                .run(['$ionicPlatform', app_run_1.default])
+                .animation('.mainBoxingGlove', app_animations_1.default);
             angular.module('core.settings', ['ngResource']);
             angular.module('core.settings')
                 .service('Settings', ['$resource', '$timeout', '$interval', '$location', settings_service_1.default]);
@@ -144,11 +90,6 @@ System.register(["./core/combination/combination.service", "./core/settings/sett
                 templateUrl: 'app/combo-teaching-view/combo-teaching-view.template.html',
                 controller: ['Settings', 'Combination', 'Speech', combo_teaching_view_component_1.default]
             });
-            runConfig.$inject = ['$ionicPlatform'];
-            ;
-            configure.$inject = ['$routeProvider', '$locationProvider'];
-            ;
-            ;
             angular.element(function () {
                 angular.bootstrap(document, ['boxingBuddyApp']);
             });

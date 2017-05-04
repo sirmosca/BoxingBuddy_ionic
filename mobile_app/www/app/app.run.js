@@ -1,13 +1,10 @@
-angular.module("boxingBuddyApp").run(
-    function config($ionicPlatform) {
-        $ionicPlatform.ready(function() {
-            if (window.StatusBar) {
-                StatusBar.styleDefault();
-            }
-        });
-    }
-);
-
+function RunConfig($ionicPlatform) {
+    $ionicPlatform.ready(function() {
+        if (window.StatusBar) {
+            StatusBar.styleDefault();
+        }
+    });
+}
 
 // .run(function($ionicPlatform, $cordovaSplashscreen) {
 //     $ionicPlatform.ready(function() {
