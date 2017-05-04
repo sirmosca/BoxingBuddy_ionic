@@ -1,4 +1,4 @@
-function boxingBuddyAnimationFactory() {
+function MainGloveAnimation() {
     return {
       addClass: animateIn,
       removeClass: animateOut
