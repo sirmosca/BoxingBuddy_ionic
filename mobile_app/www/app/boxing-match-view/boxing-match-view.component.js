@@ -5,7 +5,7 @@ function BoxingMatchViewController(Settings, Combination, Speech) {
         self.startedBoxing = false;
         self.showPunchImg = false;
         self.combos = [];
-        Combination.query().$promise.then(function(resp) {
+        Combination.query().then(function(resp) {
             angular.forEach(
                 resp,
                 function(value, key) {

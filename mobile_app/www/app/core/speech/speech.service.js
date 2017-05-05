@@ -1,4 +1,3 @@
-"use strict";
 function Speech() {
     function sayIt(text, config) {
         TTS.speak({

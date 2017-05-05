@@ -60,7 +60,7 @@ System.register(["./core/combination/combination.service", "./core/settings/sett
                 .factory('Settings', ['$resource', '$timeout', '$interval', '$location', settings_service_1.Settings]);
             angular.module('core.combination', ['ngResource']);
             angular.module('core.combination')
-                .factory('Combination', ['$resource', combination_service_1.default]);
+                .factory('Combination', ['$resource', combination_service_1.Combination]);
             angular.module('core.speech', []);
             angular.module('core.speech')
                 .factory('Speech', [speech_service_1.default]);

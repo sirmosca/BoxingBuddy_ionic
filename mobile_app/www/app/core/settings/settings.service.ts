@@ -7,6 +7,8 @@ export class Settings {
     private roundIntermission: number;
     private displayType: string;
 
+    static $inject =  ['$resource', '$timeout', '$interval', '$location'];
+
     constructor(
         private $resource, 
         private $timeout, 

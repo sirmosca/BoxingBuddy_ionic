@@ -67,6 +67,7 @@ System.register([], function (exports_1, context_1) {
                     this.displayType = "numbers";
                 }
             };
+            Settings.$inject = ['$resource', '$timeout', '$interval', '$location'];
             exports_1("Settings", Settings);
         }
     };

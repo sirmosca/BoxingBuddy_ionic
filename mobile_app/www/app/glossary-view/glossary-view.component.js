@@ -1,17 +1,19 @@
 function GlossaryViewController(Settings, Combination) {
     var self = this;
-    self.combos = [];
-    self.selectedCombo = null;
 
-    Combination.query().$promise.then(function(resp) {
-        angular.forEach(
-            resp,
-            function(value, key) {
-                this.push(value);
-            },
-            self.combos
-        );
-    });
+    self.$onInit = function() {
+        self.combos = [];
+        self.selectedCombo = null;
+        Combination.query().then(function(resp) {
+            angular.forEach(
+                resp,
+                function(value, key) {
+                    this.push(value);
+                },
+                self.combos
+            );
+        });
+    }
 
     self.formatPunches = function() {
         if (self.selectedCombo === null) return;

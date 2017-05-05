@@ -7,7 +7,7 @@
         "experimentalDecorators": true,
         "removeComments": false,
         "allowJs": true,
-        "alwaysStrict": true,
+        //"alwaysStrict": true,
         "checkJs": true
     },
     "exclude": [
