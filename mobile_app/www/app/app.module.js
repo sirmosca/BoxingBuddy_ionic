@@ -78,17 +78,17 @@ System.register(["./core/combination/combination.service", "./core/settings/sett
             angular.module("boxingMatchView", ["core"]);
             angular.module("boxingMatchView").component("boxingMatchView", {
                 templateUrl: "app/boxing-match-view/boxing-match-view.template.html",
-                controller: ["Settings", "Combination", "Speech", boxing_match_view_component_1.default]
+                controller: ["Settings", "Combination", "Speech", boxing_match_view_component_1.BoxingMatchViewController]
             });
             angular.module('settingsView', ['core']);
             angular.module('settingsView').component('settingsView', {
                 templateUrl: 'app/settings-view/settings-view.template.html',
-                controller: ['Settings', settings_view_component_1.default]
+                controller: ['Settings', settings_view_component_1.SettingsViewController]
             });
             angular.module('comboTeachingView', ['core']);
             angular.module('comboTeachingView').component('comboTeachingView', {
                 templateUrl: 'app/combo-teaching-view/combo-teaching-view.template.html',
-                controller: ['Settings', 'Combination', 'Speech', combo_teaching_view_component_1.default]
+                controller: ['Settings', 'Combination', 'Speech', combo_teaching_view_component_1.ComboTeachingViewController]
             });
             angular.element(function () {
                 angular.bootstrap(document, ['boxingBuddyApp']);
