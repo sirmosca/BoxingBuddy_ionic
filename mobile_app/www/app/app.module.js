@@ -68,12 +68,12 @@ System.register(["./core/combination/combination.service", "./core/settings/sett
             angular.module('mainView', ['core']);
             angular.module('mainView').component('mainView', {
                 templateUrl: "app/main-view/main-view.template.html",
-                controller: ['Settings', main_view_component_1.default]
+                controller: ['Settings', main_view_component_1.MainViewController]
             });
             angular.module("glossaryView", ["core"]);
             angular.module("glossaryView").component("glossaryView", {
                 templateUrl: "app/glossary-view/glossary-view.template.html",
-                controller: ["Settings", "Combination", glossary_view_component_1.default]
+                controller: ["Settings", "Combination", glossary_view_component_1.GlossaryViewController]
             });
             angular.module("boxingMatchView", ["core"]);
             angular.module("boxingMatchView").component("boxingMatchView", {
