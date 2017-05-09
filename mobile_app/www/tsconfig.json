@@ -3,6 +3,7 @@
         "target": "ES6",
         "module": "system",
         "sourceMap": true,
+          "moduleResolution": "node",
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "removeComments": false,
@@ -14,3 +15,20 @@
         "node_modules"
     ]
 }
+
+// {
+//   "compilerOptions": {
+//     "target": "es5",
+//     "module": "system",
+//     "moduleResolution": "node",
+//     "sourceMap": true,
+//     "emitDecoratorMetadata": true,
+//     "experimentalDecorators": true,
+//     "lib": [ "es2015", "dom" ],
+//     "noImplicitAny": true,
+//     "suppressImplicitAnyIndexErrors": true,
+//     "removeComments": false,
+//     "allowJs": true,
+//     "checkJs": true
+//   }
+// }

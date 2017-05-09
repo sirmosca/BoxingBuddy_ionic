@@ -1,4 +1,10 @@
 import {Combination} from './core/combination/combination.service';
+
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { UpgradeModule } from '@angular/upgrade/static';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+
 import {Settings} from './core/settings/settings.service';
 import Speech from './core/speech/speech.service'; 
 import {MainViewController} from './main-view/main-view.component';
@@ -9,6 +15,17 @@ import {ComboTeachingViewController} from './combo-teaching-view/combo-teaching-
 import Config from './app.config';
 import RunConfig from './app.run';
 import MainGloveAnimation from './app.animations';
+
+@NgModule({
+  imports: [
+    BrowserModule,
+    UpgradeModule
+  ],
+  bootstrap: []
+})
+export class AppModule {
+  ngDoBootstrap() {}
+}
 
 angular
     .module("boxingBuddyApp", [
@@ -29,15 +46,15 @@ angular
 
 angular.module('core.settings', ['ngResource']);
 angular.module('core.settings')
-   .factory('Settings', ['$resource', '$timeout', '$interval', '$location', Settings]);
+   .service('Settings', ['$resource', '$timeout', '$interval', '$location', Settings]);
 
 angular.module('core.combination', ['ngResource']);
 angular.module('core.combination')
-    .factory('Combination', ['$resource', Combination]);
+    .service('Combination', ['$resource', Combination]);
 
 angular.module('core.speech', []);
 angular.module('core.speech')
-    .factory('Speech', [Speech]);
+    .service('Speech', [Speech]);
 
 angular.module('core', ['core.settings', 'core.combination', 'core.speech']);
 
@@ -71,6 +88,11 @@ angular.module('comboTeachingView').component('comboTeachingView', {
     controller: ['Settings', 'Combination', 'Speech', ComboTeachingViewController]
 });
 
-angular.element(function() {
-    angular.bootstrap(document, ['boxingBuddyApp']);
+// angular.element(function() {
+//     angular.bootstrap(document, ['boxingBuddyApp']);
+// });
+
+platformBrowserDynamic().bootstrapModule(AppModule).then(platformRef => {
+  const upgrade = platformRef.injector.get(UpgradeModule) as UpgradeModule;
+  upgrade.bootstrap(document.body, ['boxingBuddyApp'], { strictDi: true });
 });

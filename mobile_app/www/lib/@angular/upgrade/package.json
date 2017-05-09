@@ -1,0 +1,90 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "@angular/upgrade@latest",
+        "scope": "@angular",
+        "escapedName": "@angular%2fupgrade",
+        "name": "@angular/upgrade",
+        "rawSpec": "latest",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "C:\\git\\BoxingBuddy_ionic\\mobile_app"
+    ]
+  ],
+  "_from": "@angular/upgrade@latest",
+  "_id": "@angular/upgrade@4.1.1",
+  "_inCache": true,
+  "_location": "/@angular/upgrade",
+  "_nodeVersion": "6.10.0",
+  "_npmOperationalInternal": {
+    "host": "packages-18-east.internal.npmjs.com",
+    "tmp": "tmp/upgrade-4.1.1.tgz_1493933237884_0.18104195035994053"
+  },
+  "_npmUser": {
+    "name": "angular",
+    "email": "angular-core+npm@google.com"
+  },
+  "_npmVersion": "3.10.10",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "@angular/upgrade@latest",
+    "scope": "@angular",
+    "escapedName": "@angular%2fupgrade",
+    "name": "@angular/upgrade",
+    "rawSpec": "latest",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/@angular/upgrade/-/upgrade-4.1.1.tgz",
+  "_shasum": "f04f99caaddd8730d4479ee73d477c8302919e7e",
+  "_shrinkwrap": null,
+  "_spec": "@angular/upgrade@latest",
+  "_where": "C:\\git\\BoxingBuddy_ionic\\mobile_app",
+  "author": {
+    "name": "angular"
+  },
+  "bugs": {
+    "url": "https://github.com/angular/angular/issues"
+  },
+  "dependencies": {},
+  "description": "Angular - the library for easing update from v1 to v2",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "f04f99caaddd8730d4479ee73d477c8302919e7e",
+    "tarball": "https://registry.npmjs.org/@angular/upgrade/-/upgrade-4.1.1.tgz"
+  },
+  "es2015": "./@angular/upgrade.js",
+  "homepage": "https://github.com/angular/angular#readme",
+  "license": "MIT",
+  "main": "./bundles/upgrade.umd.js",
+  "maintainers": [
+    {
+      "name": "angular",
+      "email": "angular-core+npm@google.com"
+    }
+  ],
+  "module": "./@angular/upgrade.es5.js",
+  "name": "@angular/upgrade",
+  "optionalDependencies": {},
+  "peerDependencies": {
+    "@angular/core": "4.1.1",
+    "@angular/compiler": "4.1.1",
+    "@angular/platform-browser": "4.1.1",
+    "@angular/platform-browser-dynamic": "4.1.1"
+  },
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/angular/angular.git"
+  },
+  "scripts": {},
+  "typings": "./upgrade.d.ts",
+  "version": "4.1.1"
+}
