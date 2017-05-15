@@ -1,8 +1,10 @@
 import {Combination} from './core/combination/combination.service';
 
-import { NgModule } from '@angular/core';
+import { NgModule, Injectable } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { UpgradeModule } from '@angular/upgrade/static';
+import { HttpModule } from '@angular/http';
+declare var angular: angular.IAngularStatic;
+import { UpgradeModule, downgradeInjectable } from '@angular/upgrade/static';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import {Settings} from './core/settings/settings.service';
@@ -15,13 +17,17 @@ import {ComboTeachingViewController} from './combo-teaching-view/combo-teaching-
 import Config from './app.config';
 import RunConfig from './app.run';
 import MainGloveAnimation from './app.animations';
+import { RouterModule, UrlHandlingStrategy, UrlTree,Router } from '@angular/router';
 
 @NgModule({
-  imports: [
-    BrowserModule,
-    UpgradeModule
-  ],
-  bootstrap: []
+    providers: [Settings],
+    imports: [
+        BrowserModule,
+        UpgradeModule,
+        HttpModule,
+        RouterModule
+    ],
+    bootstrap: []
 })
 export class AppModule {
   ngDoBootstrap() {}
@@ -44,9 +50,9 @@ angular
     .run(['$ionicPlatform', RunConfig])
     .animation('.mainBoxingGlove', MainGloveAnimation);
 
-angular.module('core.settings', ['ngResource']);
+angular.module('core.settings', []);
 angular.module('core.settings')
-   .service('Settings', ['$resource', '$timeout', '$interval', '$location', Settings]);
+   .factory('Settings', [Settings]);
 
 angular.module('core.combination', ['ngResource']);
 angular.module('core.combination')
@@ -87,10 +93,6 @@ angular.module('comboTeachingView').component('comboTeachingView', {
     templateUrl: 'app/combo-teaching-view/combo-teaching-view.template.html',
     controller: ['Settings', 'Combination', 'Speech', ComboTeachingViewController]
 });
-
-// angular.element(function() {
-//     angular.bootstrap(document, ['boxingBuddyApp']);
-// });
 
 platformBrowserDynamic().bootstrapModule(AppModule).then(platformRef => {
   const upgrade = platformRef.injector.get(UpgradeModule) as UpgradeModule;

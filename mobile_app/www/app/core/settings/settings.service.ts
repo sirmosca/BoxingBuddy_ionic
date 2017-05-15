@@ -1,3 +1,7 @@
+import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
+
+@Injectable()
 export class Settings {
 
     private roundTime: number;
@@ -7,13 +11,7 @@ export class Settings {
     private roundIntermission: number;
     private displayType: string;
 
-    static $inject =  ['$resource', '$timeout', '$interval', '$location'];
-
-    constructor(
-        private $resource, 
-        private $timeout, 
-        private $interval, 
-        private $location) {
+    constructor() {
             this.roundTime = 180000;
             this.maxRounds = 2;
             this.timeBetweenPunches = 750;
@@ -71,18 +69,19 @@ export class Settings {
     }
 
     sleep = function(fn, millis) {
-        return $timeout(fn, millis);
+        return setTimeout(fn, millis);
     };
 
-    interval = function(fn, millis, count) {
-        return $interval(fn, millis, count);
+    interval = function(fn, millis) {
+        let intervalId = setInterval(fn, millis);
+        return intervalId;
     }
 
-    cancelInterval = function(fn) {
-        $interval.cancel(fn);
+    cancelInterval = function(intervalId) {
+        clearInterval(intervalId);
     }
 
     navigate = function(url) {
-        $location.path(url);
+        Router.navigateByUrl(url);
     }
 }
