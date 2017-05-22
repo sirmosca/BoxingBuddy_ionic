@@ -1,28 +1,16 @@
-System.register(["@angular/core", "@angular/router"], function (exports_1, context_1) {
+System.register([], function (exports_1, context_1) {
     "use strict";
-    var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-        if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-        else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-        return c > 3 && r && Object.defineProperty(target, key, r), r;
-    };
-    var __metadata = (this && this.__metadata) || function (k, v) {
-        if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-    };
     var __moduleName = context_1 && context_1.id;
-    var core_1, router_1, Settings;
+    var Settings;
     return {
-        setters: [
-            function (core_1_1) {
-                core_1 = core_1_1;
-            },
-            function (router_1_1) {
-                router_1 = router_1_1;
-            }
-        ],
+        setters: [],
         execute: function () {
             Settings = class Settings {
-                constructor() {
+                constructor($resource, $timeout, $interval, $location) {
+                    this.$resource = $resource;
+                    this.$timeout = $timeout;
+                    this.$interval = $interval;
+                    this.$location = $location;
                     this.setRoundTime = function (roundTime) {
                         this.roundTime = roundTime;
                     };
@@ -51,7 +39,7 @@ System.register(["@angular/core", "@angular/router"], function (exports_1, conte
                         return this.roundIntermission;
                     };
                     this.setRoundIntermission = function (roundIntermission) {
-                        this.roundIntermission = rountIntermission;
+                        this.roundIntermission = roundIntermission;
                     };
                     this.getDisplayType = function () {
                         return this.displayType;
@@ -60,17 +48,16 @@ System.register(["@angular/core", "@angular/router"], function (exports_1, conte
                         this.displayType = displayType;
                     };
                     this.sleep = function (fn, millis) {
-                        return setTimeout(fn, millis);
+                        return this.$timeout(fn, millis);
                     };
-                    this.interval = function (fn, millis) {
-                        let intervalId = setInterval(fn, millis);
-                        return intervalId;
+                    this.interval = function (fn, millis, count) {
+                        return this.$interval(fn, millis, count);
                     };
-                    this.cancelInterval = function (intervalId) {
-                        clearInterval(intervalId);
+                    this.cancelInterval = function (fn) {
+                        this.$interval.cancel(fn);
                     };
                     this.navigate = function (url) {
-                        router_1.Router.navigateByUrl(url);
+                        this.$location.path(url);
                     };
                     this.roundTime = 180000;
                     this.maxRounds = 2;
@@ -80,10 +67,7 @@ System.register(["@angular/core", "@angular/router"], function (exports_1, conte
                     this.displayType = "numbers";
                 }
             };
-            Settings = __decorate([
-                core_1.Injectable(),
-                __metadata("design:paramtypes", [])
-            ], Settings);
+            Settings.$inject = ['$resource', '$timeout', '$interval', '$location'];
             exports_1("Settings", Settings);
         }
     };

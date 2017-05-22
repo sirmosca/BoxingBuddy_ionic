@@ -1,12 +1,12 @@
 import {Combination} from './core/combination/combination.service';
 
-import { NgModule, Injectable } from '@angular/core';
+import { NgModule, Injectable, Component } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 declare var angular: angular.IAngularStatic;
 import { UpgradeModule, downgradeInjectable } from '@angular/upgrade/static';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-
+import { RouterModule, UrlHandlingStrategy, UrlTree, Router, Routes } from '@angular/router';
 import {Settings} from './core/settings/settings.service';
 import Speech from './core/speech/speech.service'; 
 import {MainViewController} from './main-view/main-view.component';
@@ -17,15 +17,19 @@ import {ComboTeachingViewController} from './combo-teaching-view/combo-teaching-
 import Config from './app.config';
 import RunConfig from './app.run';
 import MainGloveAnimation from './app.animations';
-import { RouterModule, UrlHandlingStrategy, UrlTree,Router } from '@angular/router';
+
+
+const appRoutes: Routes = [
+  { path: '', component: MainViewController },
+];
 
 @NgModule({
-    providers: [Settings],
+    providers: [
+
+    ],
     imports: [
         BrowserModule,
-        UpgradeModule,
-        HttpModule,
-        RouterModule
+        UpgradeModule
     ],
     bootstrap: []
 })
@@ -50,9 +54,9 @@ angular
     .run(['$ionicPlatform', RunConfig])
     .animation('.mainBoxingGlove', MainGloveAnimation);
 
-angular.module('core.settings', []);
+angular.module('core.settings', ['ngResource']);
 angular.module('core.settings')
-   .factory('Settings', [Settings]);
+    .service('Settings', ['$resource', '$timeout', '$interval', '$location', Settings]);
 
 angular.module('core.combination', ['ngResource']);
 angular.module('core.combination')
