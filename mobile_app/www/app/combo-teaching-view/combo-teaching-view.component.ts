@@ -1,6 +1,6 @@
 export class ComboTeachingViewController {
 
-    private combons: Array = [];
+    private combos: Array = [];
 
     static $inject = ['Settings', 'Combination', 'Speech'];
 

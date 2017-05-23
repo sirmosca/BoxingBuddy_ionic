@@ -7,7 +7,7 @@ System.register([], function (exports_1, context_1) {
         execute: function () {
             ComboTeachingViewController = class ComboTeachingViewController {
                 constructor(Settings, Combination, Speech) {
-                    this.combons = [];
+                    this.combos = [];
                     this.$onInit = function () {
                         this.combos = [];
                         this.selectedCombo = null;
