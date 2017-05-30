@@ -1,3 +1,7 @@
+import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
+
+@Injectable()
 export class Settings {
 
     private roundTime: number;
@@ -7,13 +11,9 @@ export class Settings {
     private roundIntermission: number;
     private displayType: string;
 
-    static $inject =  ['$resource', '$timeout', '$interval', '$location'];
-
     constructor(
-        private $resource, 
-        private $timeout, 
-        private $interval, 
-        private $location) {
+//        private router:Router
+    ) {
             this.roundTime = 180000;
             this.maxRounds = 2;
             this.timeBetweenPunches = 750;
@@ -22,67 +22,68 @@ export class Settings {
             this.displayType = "numbers";
     }
     
-    setRoundTime = function(roundTime) {
+    setRoundTime(roundTime) {
         this.roundTime = roundTime;
     };
 
-    getRoundTime = function() {
+    getRoundTime() {
         return this.roundTime;
     };
 
-    setMaxRounds = function(maxRounds) {
+    setMaxRounds(maxRounds) {
         this.maxRounds = maxRounds;
     }
 
-    getMaxRounds = function() {
+    getMaxRounds() {
         return this.maxRounds;
     }
 
-    getTimeBetweenPunches = function() {
+    getTimeBetweenPunches() {
         return this.timeBetweenPunches;
     }
 
-    setTimeBetweenPunches = function(timeBetweenPunches) {
+    setTimeBetweenPunches(timeBetweenPunches) {
         this.timeBetweenPunches = timeBetweenPunches
     }
 
-    getTimeBetweenCombos = function() {
+    getTimeBetweenCombos() {
         return this.timeBetweenCombos;
     }
 
-    setTimeBetweenCombos = function(timeBetweenCombos) {
+    setTimeBetweenCombos(timeBetweenCombos) {
         this.timeBetweenCombos = timeBetweenCombos;
     }
 
-    getRoundIntermission = function() {
+    getRoundIntermission() {
         return this.roundIntermission;
     }
 
-    setRoundIntermission = function(roundIntermission) {
+    setRoundIntermission(roundIntermission) {
         this.roundIntermission = roundIntermission;
     }
 
-    getDisplayType = function() {
+    getDisplayType() {
         return this.displayType;
     }
 
-    setDisplayType = function(displayType) {
+    setDisplayType(displayType) {
         this.displayType = displayType;
     }
 
-    sleep = function(fn, millis) {
-        return this.$timeout(fn, millis);
+    sleep(fn, millis) {
+        setTimeout(fn, millis);
     };
 
-    interval = function(fn, millis, count) {
-        return this.$interval(fn, millis, count);
+    interval(fn, millis, count) {
+        let id = setInterval(fn, millis);
+        return id;
     }
 
-    cancelInterval = function(fn) {
-        this.$interval.cancel(fn);
+    cancelInterval(id) {
+        clearInterval(id);
     }
 
-    navigate = function(url) {
-        this.$location.path(url);
+    navigate(url) {
+ //       this.router.navigate([url]);
     }
 }

@@ -1,13 +1,12 @@
+import { AppComponent }     from './app.component';
 import {Combination} from './core/combination/combination.service';
-
 import { NgModule, Injectable, Component } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
-declare var angular: angular.IAngularStatic;
 import { UpgradeModule, downgradeInjectable } from '@angular/upgrade/static';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { RouterModule, UrlHandlingStrategy, UrlTree, Router, Routes } from '@angular/router';
-import {Settings} from './core/settings/settings.service';
+import { Settings } from './core/settings/settings.service';
 import Speech from './core/speech/speech.service'; 
 import {MainViewController} from './main-view/main-view.component';
 import {GlossaryViewController} from './glossary-view/glossary-view.component';
@@ -17,21 +16,49 @@ import {ComboTeachingViewController} from './combo-teaching-view/combo-teaching-
 import Config from './app.config';
 import RunConfig from './app.run';
 import MainGloveAnimation from './app.animations';
+import { APP_BASE_HREF, HashLocationStrategy, LocationStrategy } from '@angular/common';
 
+export class Ng1Ng2UrlHandlingStrategy implements UrlHandlingStrategy {
+  shouldProcessUrl(url: UrlTree) {
+    return url.toString() === '/';
+  }
+  extract(url: UrlTree) { return url; }
+  merge(url: UrlTree, whole: UrlTree) { return url; }
+}
 
+declare var angular: angular.IAngularStatic;
 const appRoutes: Routes = [
-  { path: '', component: MainViewController },
+    // {path: 'settings', component: SettingsViewController},
+    // {path: 'enterRing', component: BoxingMatchViewController},
+    // {path: 'combos', component: ComboTeachingViewController},
+    // {path: 'glossary', component: GlossaryViewController},
+    {path: '', component: MainViewController},
 ];
 
 @NgModule({
-    providers: [
-
+    providers: [ 
+        Settings, 
+        { provide: APP_BASE_HREF, useValue: '!' },
+        { provide: LocationStrategy, useClass: HashLocationStrategy },
+        { provide: UrlHandlingStrategy, useClass: Ng1Ng2UrlHandlingStrategy }
     ],
+    exports: [RouterModule],
     imports: [
         BrowserModule,
-        UpgradeModule
+        UpgradeModule,
+        RouterModule.forRoot(appRoutes)
     ],
-    bootstrap: []
+    entryComponents: [
+        // MainViewController,
+        // SettingsViewController,
+        // BoxingMatchViewController,
+        // ComboTeachingViewController,
+        // GlossaryViewController
+    ],
+    declarations: [
+        //AppComponent
+    ],
+    bootstrap: [  ]
 })
 export class AppModule {
   ngDoBootstrap() {}
@@ -54,9 +81,9 @@ angular
     .run(['$ionicPlatform', RunConfig])
     .animation('.mainBoxingGlove', MainGloveAnimation);
 
-angular.module('core.settings', ['ngResource']);
+angular.module('core.settings', []);
 angular.module('core.settings')
-    .service('Settings', ['$resource', '$timeout', '$interval', '$location', Settings]);
+    .service('Settings', downgradeInjectable(Settings));
 
 angular.module('core.combination', ['ngResource']);
 angular.module('core.combination')
@@ -99,6 +126,6 @@ angular.module('comboTeachingView').component('comboTeachingView', {
 });
 
 platformBrowserDynamic().bootstrapModule(AppModule).then(platformRef => {
-  const upgrade = platformRef.injector.get(UpgradeModule) as UpgradeModule;
-  upgrade.bootstrap(document.body, ['boxingBuddyApp'], { strictDi: true });
+    const upgrade = platformRef.injector.get(UpgradeModule) as UpgradeModule;
+    upgrade.bootstrap(document.body, ['boxingBuddyApp'], { strictDi: true });
 });

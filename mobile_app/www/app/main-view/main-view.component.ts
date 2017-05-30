@@ -5,7 +5,7 @@ export class MainViewController {
     constructor(private Settings) {}
 
     enterRing = function() {
-        this.Settings.navigate("/enterRing");
+        this.Settings.navigate("enterRing");
     };
 
     goToSettings = function() {
@@ -13,7 +13,7 @@ export class MainViewController {
     };
 
     viewGlossary = function() {
-        this.Settings.navigate("/glossary");
+        this.Settings.navigate("glossary");
     };
 
     practiceCombos = function() {

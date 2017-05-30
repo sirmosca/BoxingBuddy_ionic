@@ -1,4 +1,4 @@
-System.register(["./core/combination/combination.service", "@angular/core", "@angular/platform-browser", "@angular/upgrade/static", "@angular/platform-browser-dynamic", "./core/settings/settings.service", "./core/speech/speech.service", "./main-view/main-view.component", "./glossary-view/glossary-view.component", "./boxing-match-view/boxing-match-view.component", "./settings-view/settings-view.component", "./combo-teaching-view/combo-teaching-view.component", "./app.config", "./app.run", "./app.animations"], function (exports_1, context_1) {
+System.register(["./core/combination/combination.service", "@angular/core", "@angular/platform-browser", "@angular/upgrade/static", "@angular/platform-browser-dynamic", "@angular/router", "./core/settings/settings.service", "./core/speech/speech.service", "./main-view/main-view.component", "./glossary-view/glossary-view.component", "./boxing-match-view/boxing-match-view.component", "./settings-view/settings-view.component", "./combo-teaching-view/combo-teaching-view.component", "./app.config", "./app.run", "./app.animations", "@angular/common"], function (exports_1, context_1) {
     "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -7,7 +7,7 @@ System.register(["./core/combination/combination.service", "@angular/core", "@an
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
     var __moduleName = context_1 && context_1.id;
-    var combination_service_1, core_1, platform_browser_1, static_1, platform_browser_dynamic_1, settings_service_1, speech_service_1, main_view_component_1, glossary_view_component_1, boxing_match_view_component_1, settings_view_component_1, combo_teaching_view_component_1, app_config_1, app_run_1, app_animations_1, appRoutes, AppModule;
+    var combination_service_1, core_1, platform_browser_1, static_1, platform_browser_dynamic_1, router_1, settings_service_1, speech_service_1, main_view_component_1, glossary_view_component_1, boxing_match_view_component_1, settings_view_component_1, combo_teaching_view_component_1, app_config_1, app_run_1, app_animations_1, common_1, Ng1Ng2UrlHandlingStrategy, appRoutes, AppModule;
     return {
         setters: [
             function (combination_service_1_1) {
@@ -24,6 +24,9 @@ System.register(["./core/combination/combination.service", "@angular/core", "@an
             },
             function (platform_browser_dynamic_1_1) {
                 platform_browser_dynamic_1 = platform_browser_dynamic_1_1;
+            },
+            function (router_1_1) {
+                router_1 = router_1_1;
             },
             function (settings_service_1_1) {
                 settings_service_1 = settings_service_1_1;
@@ -54,10 +57,25 @@ System.register(["./core/combination/combination.service", "@angular/core", "@an
             },
             function (app_animations_1_1) {
                 app_animations_1 = app_animations_1_1;
+            },
+            function (common_1_1) {
+                common_1 = common_1_1;
             }
         ],
         execute: function () {
+            Ng1Ng2UrlHandlingStrategy = class Ng1Ng2UrlHandlingStrategy {
+                shouldProcessUrl(url) {
+                    return url.toString() === '/';
+                }
+                extract(url) { return url; }
+                merge(url, whole) { return url; }
+            };
+            exports_1("Ng1Ng2UrlHandlingStrategy", Ng1Ng2UrlHandlingStrategy);
             appRoutes = [
+                // {path: 'settings', component: SettingsViewController},
+                // {path: 'enterRing', component: BoxingMatchViewController},
+                // {path: 'combos', component: ComboTeachingViewController},
+                // {path: 'glossary', component: GlossaryViewController},
                 { path: '', component: main_view_component_1.MainViewController },
             ];
             AppModule = class AppModule {
@@ -65,11 +83,20 @@ System.register(["./core/combination/combination.service", "@angular/core", "@an
             };
             AppModule = __decorate([
                 core_1.NgModule({
-                    providers: [],
+                    providers: [
+                        settings_service_1.Settings,
+                        { provide: common_1.APP_BASE_HREF, useValue: '!' },
+                        { provide: common_1.LocationStrategy, useClass: common_1.HashLocationStrategy },
+                        { provide: router_1.UrlHandlingStrategy, useClass: Ng1Ng2UrlHandlingStrategy }
+                    ],
+                    exports: [router_1.RouterModule],
                     imports: [
                         platform_browser_1.BrowserModule,
-                        static_1.UpgradeModule
+                        static_1.UpgradeModule,
+                        router_1.RouterModule.forRoot(appRoutes)
                     ],
+                    entryComponents: [],
+                    declarations: [],
                     bootstrap: []
                 })
             ], AppModule);
@@ -90,9 +117,9 @@ System.register(["./core/combination/combination.service", "@angular/core", "@an
                 .config(['$routeProvider', '$locationProvider', app_config_1.default])
                 .run(['$ionicPlatform', app_run_1.default])
                 .animation('.mainBoxingGlove', app_animations_1.default);
-            angular.module('core.settings', ['ngResource']);
+            angular.module('core.settings', []);
             angular.module('core.settings')
-                .service('Settings', ['$resource', '$timeout', '$interval', '$location', settings_service_1.Settings]);
+                .service('Settings', static_1.downgradeInjectable(settings_service_1.Settings));
             angular.module('core.combination', ['ngResource']);
             angular.module('core.combination')
                 .service('Combination', ['$resource', combination_service_1.Combination]);

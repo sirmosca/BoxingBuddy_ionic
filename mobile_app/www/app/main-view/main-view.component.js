@@ -9,13 +9,13 @@ System.register([], function (exports_1, context_1) {
                 constructor(Settings) {
                     this.Settings = Settings;
                     this.enterRing = function () {
-                        this.Settings.navigate("/enterRing");
+                        this.Settings.navigate("enterRing");
                     };
                     this.goToSettings = function () {
                         this.Settings.navigate("/settings");
                     };
                     this.viewGlossary = function () {
-                        this.Settings.navigate("/glossary");
+                        this.Settings.navigate("glossary");
                     };
                     this.practiceCombos = function () {
                         this.Settings.navigate("/combos");
